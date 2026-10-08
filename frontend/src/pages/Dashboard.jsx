@@ -30,7 +30,9 @@ export default function Dashboard() {
     distance_formula: 'Haversine d = 2R * asin(...)',
   });
   const [loading, setLoading] = useState(true);
-  const [activeMathTab, setActiveMathTab] = useState('model'); // 'model' | 'haversine' | 'matching'
+  const [activeMathTab, setActiveMathTab] = useState(
+    new URLSearchParams(window.location.search).get('mathTab') || 'model'
+  ); // 'model' | 'haversine' | 'matching'
 
   useEffect(() => {
     fetchStats();

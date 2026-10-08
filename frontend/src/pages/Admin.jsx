@@ -15,7 +15,9 @@ import {
 import api from '../services/api';
 
 export default function Admin() {
-  const [activeTab, setActiveTab] = useState('landmarks'); // 'landmarks' | 'bus_stops' | 'routes'
+  const [activeTab, setActiveTab] = useState(
+    new URLSearchParams(window.location.search).get('tab') || 'landmarks'
+  ); // 'landmarks' | 'bus_stops' | 'routes'
   const [landmarks, setLandmarks] = useState([]);
   const [busStops, setBusStops] = useState([]);
   const [routes, setRoutes] = useState([]);

@@ -33,9 +33,16 @@ export default function LandmarkDetails() {
   const [destinations, setDestinations] = useState([]);
 
   // Filters
-  const [selectedDistance, setSelectedDistance] = useState('');
-  const [selectedDestination, setSelectedDestination] = useState('');
-  const [busNumberQuery, setBusNumberQuery] = useState('');
+  const searchParams = new URLSearchParams(window.location.search);
+  const [selectedDistance, setSelectedDistance] = useState(
+    searchParams.get('max_distance') || ''
+  );
+  const [selectedDestination, setSelectedDestination] = useState(
+    searchParams.get('destination') || ''
+  );
+  const [busNumberQuery, setBusNumberQuery] = useState(
+    searchParams.get('bus') || ''
+  );
 
   // UI States
   const [loadingLandmark, setLoadingLandmark] = useState(true);
