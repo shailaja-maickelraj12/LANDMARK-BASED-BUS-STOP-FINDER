@@ -1348,11 +1348,68 @@ body {
   50% { transform: translateY(3px); }
 }
 
-/* Dashboard Page (Section 33) */
+/* Dashboard Page (Standard & Clear) */
 .dashboard-page {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.dashboard-header-card {
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border-color);
+}
+
+.dash-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.system-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.status-dot-pulse {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+.dash-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+
+.dash-subtitle {
+  font-size: 0.88rem;
+  color: #64748b;
+  max-width: 680px;
+}
+
+.quick-action-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .stats-grid {
@@ -1366,17 +1423,21 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.75rem 1.25rem;
+  padding: 1.5rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
 }
 
 .stat-icon-wrap {
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .stat-landmark { background: #fee2e2; color: #dc2626; }
@@ -1385,86 +1446,415 @@ body {
 .stat-dest { background: #fef3c7; color: #d97706; }
 
 .stat-value {
-  font-size: 2.25rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: #0f172a;
   line-height: 1;
 }
 
 .stat-label {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: var(--text-muted);
+  color: #1e293b;
   margin-top: 0.35rem;
 }
 
-/* Mathematical Model Box */
-.math-model-section {
-  padding: 1.75rem;
+.stat-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
 }
 
-.math-title-group {
+/* Secondary Network Metric Strip */
+.network-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.metric-strip-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.15rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+}
+
+.strip-icon-box {
+  width: 40px;
+  height: 40px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.strip-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.strip-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.strip-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0.15rem 0;
+}
+
+.strip-desc {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Dashboard Content Split: Table & Destinations */
+.dashboard-content-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+@media (max-width: 980px) {
+  .dashboard-content-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dash-table-card, .dash-destinations-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.dash-section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.dash-section-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.standard-dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.standard-dash-table th {
+  padding: 0.7rem 0.85rem;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.standard-dash-table td {
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.td-landmark, .td-stop {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.category-pill {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  font-size: 0.72rem;
+}
+
+.dist-chip {
+  display: inline-block;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.btn-xs {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+/* Destinations Connectivity List */
+.destinations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.dest-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  border: 1px solid #f1f5f9;
+  transition: all 0.15s ease;
+}
+
+.dest-row:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+.dest-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.dest-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.dest-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #0f172a;
+}
+
+.dest-count-tag {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.dest-card-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+}
+
+.text-xs { font-size: 0.75rem; }
+
+/* Standardized Technical & Mathematical Card */
+.standard-tech-card {
+  padding: 1.5rem;
+  background: #ffffff;
+}
+
+.tech-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tech-badge-icon {
+  width: 36px;
+  height: 36px;
+  background: #eff6ff;
+  color: var(--primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-tabs {
+  display: flex;
+  gap: 0.35rem;
+  background: #f1f5f9;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+}
+
+.tech-tab-btn {
+  padding: 0.4rem 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tech-tab-btn:hover {
+  color: #0f172a;
+}
+
+.tech-tab-btn.active {
+  background: #ffffff;
+  color: var(--primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.tech-tab-content {
+  margin-top: 1.25rem;
+}
+
+.spec-banner {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+}
+
+.spec-formula-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.spec-summary {
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.85rem;
+}
+
+.spec-item-box {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+}
+
+.spec-item-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
-.math-box {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-radius: var(--radius-sm);
-  padding: 1.25rem;
-  margin-top: 1rem;
+.spec-letter {
+  width: 22px;
+  height: 22px;
+  background: #1e293b;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.math-formula {
-  font-size: 1.1rem;
-  color: #1e3a8a;
-  margin-bottom: 0.75rem;
-  font-family: 'JetBrains Mono', monospace;
+.spec-item-header h4 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0f172a;
 }
 
-.math-tuples-grid {
+.spec-item-box p {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.haversine-breakdown-grid, .optimization-flow-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 0.5rem;
-  font-size: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.85rem;
 }
 
-.math-details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-}
-
-.math-card {
+.h-card, .opt-step-card {
   background: #ffffff;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 1rem;
 }
 
-.math-card h3 {
-  font-size: 0.95rem;
+.h-card h5, .opt-step-card h4 {
+  font-size: 0.88rem;
   font-weight: 800;
   color: #0f172a;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.45rem;
 }
 
-.code-block {
-  background: #1e293b;
-  color: #f1f5f9;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  padding: 0.65rem 0.85rem;
-  border-radius: 6px;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-}
-
-.math-explain {
+.h-card p, .opt-step-card p {
   font-size: 0.78rem;
-  color: var(--text-muted);
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.opt-step-badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.opt-step-card code {
+  display: block;
+  background: #f1f5f9;
+  padding: 0.35rem 0.55rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #1e293b;
+  margin: 0.45rem 0;
+}
+
+.tech-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: #065f46;
 }
 
 /* Admin / Manage Page (Section 32) */

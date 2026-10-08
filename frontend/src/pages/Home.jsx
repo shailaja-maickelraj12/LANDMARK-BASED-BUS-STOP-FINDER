@@ -92,7 +92,7 @@ export default function Home() {
       <section className="workflow-section">
         <div className="section-header text-center">
           <h2 className="section-title">How It Works</h2>
-          <p className="section-subtitle">Dynamic Haversine Distance & Route Destination Matching</p>
+          <p className="section-subtitle">Smart Landmark Search, Walking Distance Calculation & Direct Route Matching</p>
         </div>
 
         <div className="workflow-steps">
@@ -109,7 +109,7 @@ export default function Home() {
             <div className="step-number">2</div>
             <div className="step-icon"><Compass size={22} /></div>
             <h4 className="step-title">Calculate Distance</h4>
-            <p className="step-desc">Haversine formula computes exact distance to stops</p>
+            <p className="step-desc">Calculates real-world walking distance in meters to all nearby stops</p>
           </div>
 
           <div className="workflow-arrow"><ArrowRight size={20} /></div>
@@ -118,7 +118,7 @@ export default function Home() {
             <div className="step-number">3</div>
             <div className="step-icon"><Bus size={22} /></div>
             <h4 className="step-title">Find Nearest Bus Stop</h4>
-            <p className="step-desc">Identifies B* = argmin d_i dynamically in meters</p>
+            <p className="step-desc">Ranks and identifies the closest boarding point</p>
           </div>
 
           <div className="workflow-arrow"><ArrowRight size={20} /></div>
@@ -127,7 +127,7 @@ export default function Home() {
             <div className="step-number">4</div>
             <div className="step-icon"><Navigation size={22} /></div>
             <h4 className="step-title">Match Suitable Bus</h4>
-            <p className="step-desc">Filter by destination and get direct route stops & map</p>
+            <p className="step-desc">Filter by destination and get route stops with interactive map</p>
           </div>
         </div>
       </section>

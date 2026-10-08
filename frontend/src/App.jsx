@@ -27,7 +27,7 @@ export default function App() {
           <div className="footer-brand">
             <span className="footer-title">Landmark-Based Bus Stop Finder</span>
             <p className="footer-subtitle">
-              Mathematical Model M = (L, B, R, D, U, F) • Haversine Distance Calculation
+              Smart Tourist Transit Guide • Dynamic Geodesic Distance Engine • OpenStreetMap & Leaflet
             </p>
           </div>
           <div className="footer-links">

@@ -270,7 +270,7 @@ export default function LandmarkDetails() {
               <span className="badge nearest-pill">★ Nearest Bus Stop</span>
               <h2 className="nearest-stop-title">🚌 {nearestStop.nearest_bus_stop}</h2>
               <div className="nearest-distance-tag">
-                Distance: <strong>{Math.round(nearestStop.distance_meters)} m</strong> (Calculated via Haversine Formula)
+                Walking Distance: <strong>{Math.round(nearestStop.distance_meters)} meters</strong> (~{Math.max(1, Math.round(nearestStop.distance_meters / 80))} min walk)
               </div>
             </div>
             <div className="nearest-actions">

@@ -213,19 +213,56 @@ def get_destinations():
 
 @route_bp.route("/dashboard/stats", methods=["GET"])
 def get_dashboard_stats():
-    """Dashboard statistics: count of landmarks, bus stops, routes, destinations"""
+    """Dashboard statistics: count of landmarks, bus stops, routes, destinations and transit network summary"""
     try:
+        from services.distance_service import find_nearest_bus_stop
         db = get_db()
-        total_landmarks = db.landmarks.count_documents({})
-        total_bus_stops = db.bus_stops.count_documents({})
-        total_routes = db.routes.count_documents({})
-        total_destinations = len(db.destinations.distinct("name"))
+        landmarks = list(db.landmarks.find())
+        bus_stops = list(db.bus_stops.find())
+        routes = list(db.routes.find())
+        destinations = sorted(list(set([d.get("name") for d in db.destinations.find() if d.get("name")])))
+
+        serialized_stops = [serialize_doc(bs) for bs in bus_stops]
+
+        # Compute nearest bus stop for each landmark dynamically
+        landmarks_summary = []
+        nearest_distances = []
+        for lm in landmarks:
+            lm_serialized = serialize_doc(lm)
+            nearest = find_nearest_bus_stop(lm_serialized, serialized_stops)
+            if nearest:
+                dist = nearest.get("distance_meters", 0)
+                nearest_distances.append(dist)
+                landmarks_summary.append({
+                    "id": lm_serialized["id"],
+                    "name": lm_serialized.get("name"),
+                    "category": lm_serialized.get("category"),
+                    "nearest_bus_stop": nearest.get("name"),
+                    "distance_meters": dist,
+                })
+
+        avg_dist = round(sum(nearest_distances) / len(nearest_distances), 1) if nearest_distances else 0
+
+        # Destination connectivity count
+        dest_counts = {}
+        for r in routes:
+            d = r.get("destination", "").strip()
+            if d:
+                dest_counts[d] = dest_counts.get(d, 0) + 1
+
+        top_destinations = [
+            {"destination": k, "route_count": v}
+            for k, v in sorted(dest_counts.items(), key=lambda x: x[1], reverse=True)[:8]
+        ]
 
         return jsonify({
-            "total_landmarks": total_landmarks,
-            "total_bus_stops": total_bus_stops,
-            "total_routes": total_routes,
-            "total_destinations": total_destinations,
+            "total_landmarks": len(landmarks),
+            "total_bus_stops": len(bus_stops),
+            "total_routes": len(routes),
+            "total_destinations": len(destinations),
+            "avg_nearest_distance": avg_dist,
+            "landmarks_summary": landmarks_summary,
+            "top_destinations": top_destinations,
             "mathematical_model": "M = (L, B, R, D, U, F)",
             "distance_formula": "Haversine d = 2R * asin(sqrt(sin^2(d_phi/2) + cos(phi1)*cos(phi2)*sin^2(d_lambda/2)))"
         }), 200
