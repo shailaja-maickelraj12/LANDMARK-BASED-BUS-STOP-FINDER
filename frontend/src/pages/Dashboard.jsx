@@ -359,7 +359,7 @@ export default function Dashboard() {
                   <h4>Filtering Engine</h4>
                 </div>
                 <p>
-                  Selection operators that filter candidates by radius ($D_{max}$) and match direct bus lines heading to $D_u$.
+                  Selection operators that filter candidates by radius (D_max) and match direct bus lines heading to destination D_u.
                 </p>
               </div>
             </div>
@@ -423,7 +423,7 @@ export default function Dashboard() {
           <div className="tech-tab-content">
             <div className="spec-banner">
               <span className="spec-formula-code">
-                B* = argmin_{'{B_i ∈ B\'}'} d_i  &nbsp; &nbsp; | &nbsp; &nbsp;  R* = {'{ R_i ∈ R\' | Destination(R_i) = D_u }'}
+                B* = argmin d_i &nbsp; &nbsp; | &nbsp; &nbsp; R* = Direct routes matching destination D_u
               </span>
               <p className="spec-summary">
                 Dynamic optimization to identify the absolute closest boarding stop and filter buses by passenger destination.
@@ -434,7 +434,7 @@ export default function Dashboard() {
               <div className="opt-step-card">
                 <span className="opt-step-badge">Phase 1</span>
                 <h4>Radius Filtering</h4>
-                <code>B' = {'{ B_i ∈ B | D(L, B_i) ≤ D_max }'}</code>
+                <code>Distance(Landmark, Stop) ≤ Max_Distance</code>
                 <p>
                   Filters candidate bus stops within tourist-selected walking tolerances (500 m, 1 km, 2 km, 5 km).
                 </p>
@@ -443,18 +443,18 @@ export default function Dashboard() {
               <div className="opt-step-card">
                 <span className="opt-step-badge">Phase 2</span>
                 <h4>Nearest Stop Ranking</h4>
-                <code>B* = argmin d_i</code>
+                <code>Nearest Stop B* = min(d_i)</code>
                 <p>
-                  Sorts all surrounding stops by Haversine distance ascending, highlighting the closest stop ($B^*$).
+                  Sorts all surrounding stops by Haversine distance ascending, highlighting the closest stop (B*).
                 </p>
               </div>
 
               <div className="opt-step-card">
                 <span className="opt-step-badge">Phase 3</span>
                 <h4>Destination Matching</h4>
-                <code>Match(R_i, D_u) ∈ {'{0, 1}'}</code>
+                <code>Destination(Route) == User Destination</code>
                 <p>
-                  Matches buses operating at nearby stops whose destination reaches the tourist's onward target ($D_u$).
+                  Matches buses operating at nearby stops whose destination reaches the tourist's onward target (D_u).
                 </p>
               </div>
             </div>

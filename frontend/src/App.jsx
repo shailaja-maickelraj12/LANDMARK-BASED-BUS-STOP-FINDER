@@ -8,19 +8,23 @@ import RouteDetails from './pages/RouteDetails';
 import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 
+import ErrorBoundary from './components/ErrorBoundary';
+
 export default function App() {
   return (
     <div className="app-layout">
       <Navbar />
       <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/landmark/:id" element={<LandmarkDetails />} />
-          <Route path="/route/:id" element={<RouteDetails />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/landmark/:id" element={<LandmarkDetails />} />
+            <Route path="/route/:id" element={<RouteDetails />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </ErrorBoundary>
       </main>
       <footer className="footer">
         <div className="footer-container">
